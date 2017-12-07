@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beazley.DNO.Portal.Mock", "Beazley.DNO.Portal.Mock\Beazley.DNO.Portal.Mock.csproj", "{2E1741D4-DA3C-480C-9E91-2DE2B62A9EFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beazley.DNO.Portal.MockNetStandard", "Beazley.DNO.Portal.Mock\Beazley.DNO.Portal.MockNetStandard.csproj", "{2E1741D4-DA3C-480C-9E91-2DE2B62A9EFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beazley.ServiceProxy", "Beazley.ServiceProxy\Beazley.ServiceProxy.csproj", "{F90752D0-EBDD-40D3-B79F-43B34F108538}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beazley.ServiceProxyNetStandard", "Beazley.ServiceProxy\Beazley.ServiceProxyNetStandard.csproj", "{F90752D0-EBDD-40D3-B79F-43B34F108538}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beazley.ServiceModels", "Beazley.ServiceModels\Beazley.ServiceModels.csproj", "{910EEA24-19B9-4C4C-A625-F3E0E63FA398}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beazley.ServiceModels.NetStandard", "Beazley.ServiceModels\Beazley.ServiceModels.NetStandard.csproj", "{910EEA24-19B9-4C4C-A625-F3E0E63FA398}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beazley.Consumer", "Beazley.Consumer\Beazley.Consumer.csproj", "{765A2E41-D31D-4901-B707-13CFB3BABFF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beazley.Consumer.NetStandard", "Beazley.Consumer\Beazley.Consumer.NetStandard.csproj", "{765A2E41-D31D-4901-B707-13CFB3BABFF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

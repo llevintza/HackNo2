@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Beazley.ServiceModels\Beazley.ServiceModels.csproj" />
-    <ProjectReference Include="..\Beazley.ServiceProxy\Beazley.ServiceProxy.csproj" />
+    <ProjectReference Include="..\Beazley.ServiceModels\Beazley.ServiceModels.NetStandard.csproj" />
+    <ProjectReference Include="..\Beazley.ServiceProxy\Beazley.ServiceProxyNetStandard.csproj" />
   </ItemGroup>
 
 </Project>
