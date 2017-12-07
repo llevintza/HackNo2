@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Beazley.ServiceModels\Beazley.ServiceModels.csproj" />
+    <ProjectReference Include="..\Beazley.ServiceProxy\Beazley.ServiceProxy.csproj" />
+  </ItemGroup>
+
+</Project>
