@@ -60,14 +60,9 @@
   <ItemGroup>
     <Compile Include="Attributes\RestApiParam.cs" />
     <Compile Include="Attributes\RestApiService.cs" />
-    <Compile Include="Client\HttpRestClient.cs" />
-    <Compile Include="Client\HttpRestRequest.cs" />
-    <Compile Include="Client\HttpRestResponse.cs" />
-    <Compile Include="Client\Method.cs" />
     <Compile Include="Client\RestSharpJsonNetSerializer.cs" />
     <Compile Include="Exceptions\RestProxyException.cs" />
-    <Compile Include="HttpServiceProxy.cs" />
-    <Compile Include="Models\Credentials.cs" />
+    <Compile Include="Models\ApiAuthenticationResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestServiceProxy.cs" />
   </ItemGroup>

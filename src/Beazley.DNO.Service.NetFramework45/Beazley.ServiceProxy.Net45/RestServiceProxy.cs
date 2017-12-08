@@ -13,6 +13,7 @@ using Beazley.ServiceProxy.Net45.Exceptions;
 using Beazley.ServiceProxy.Net45.Models;
 using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Authenticators;
 using Method = RestSharp.Method;
 
 namespace Beazley.ServiceProxy.Net45
@@ -38,19 +39,13 @@ namespace Beazley.ServiceProxy.Net45
         /// </summary>
         private readonly string inlineParameter;
         
-        
-        // todo comments must be added to all elements from this class 
-
         public RestServiceProxy(string baseUrl, string inlineParameter)
         {
-            //const string serviceUrl = baseUrl;
             this.restClient = new RestClient(baseUrl);
             this.dataFormat = DataFormat.Json;
             this.inlineParameter = inlineParameter;
 
             this.restClient.Proxy = new WebProxy("127.0.0.1:8888");
-            // todo this must be injected, not created a new instance as now
-            //this.webServiceConfiguration = new WebServiceConfigurationManager();
         }
 
         public RestServiceProxy(string baseUrl) : this(baseUrl, null) { }
@@ -121,7 +116,6 @@ namespace Beazley.ServiceProxy.Net45
             {
                 try
                 {
-
                     VerifyResponse(response);
 
                     result.TrySetResult(response.Data);
@@ -193,7 +187,6 @@ namespace Beazley.ServiceProxy.Net45
                 method = verb.Value;
             }
 
-
             var request = new RestRequest(resource, method)
             {
                 RequestFormat = this.dataFormat,
@@ -237,55 +230,36 @@ namespace Beazley.ServiceProxy.Net45
         }
 
         private string GetAuthentocationCredentials()
-        {
+        {           
+            var token = string.Empty;
+            string username = "dobro";
+            string password = "endava01";
 
-            HttpClient client = new HttpClient();
-            var response = client.PostAsync("http://beazley-rulebookendava-2-2-config-server.rulebookservices.com/token", new StringContent("grant_type=password&username=dobro&password=endava01")).Result;
-
-            var result = response.Content.ReadAsStringAsync().Result;
-
-            var credentials = JsonConvert.DeserializeObject<Credentials>(result);
-
-            if (credentials != null)
+            if (string.IsNullOrWhiteSpace(token))
             {
-                return $"{credentials.TokenType} {credentials.AccessToken}";
+                //this.restClient.Authenticator = new HttpBasicAuthenticator(username, password);
+
+                var request = new RestRequest("token", Method.POST)
+                {
+                    RequestFormat = DataFormat.Json
+                };
+                request.AddParameter("grant_type", "password");
+                request.AddParameter("username", username);
+                request.AddParameter("password", password);
+
+                var response = restClient.Execute<ApiAuthenticationResponse>(request);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    token = $" {response.Data.TokenType} {response.Data.AccessToken}";
+                }
+                else
+                {
+                    throw response.ErrorException;
+                }
             }
 
-            return string.Empty;
-            // var request = new RestRequest("token", Method.POST)
-            // {
-            //     RequestFormat = this.dataFormat,
-            //     //JsonSerializer = new RestSharpJsonNetSerializer(),
-            //     Timeout = 1000 * 300
-            // };
-
-            // //request.AddParameter("grant_type", "password", ParameterType.RequestBody);
-            // //request.AddParameter("username", "dobro", ParameterType.RequestBody);
-            // //request.AddParameter("password", "endava01", ParameterType.RequestBody);
-            // request.AddBody("grant_type=password&username=dobro&password=endava01");
-            // request.
-
-
-            // var result = new TaskCompletionSource<string>();
-
-            // this.restClient.Proxy = new WebProxy("127.0.0.1:8888");
-
-            // this.restClient.ExecuteAsync<Credentials>(request, response => {
-            //     try
-            //     {
-            //         if (response.Data != null)
-            //         {
-            //             result.TrySetResult( $" {response.Data.TokenType} {response.Data.AccessToken}");
-            //         }
-            //     }
-            //     catch (Exception)
-            //     {
-            //         result.TrySetResult(string.Empty);
-            //     }
-            // });
-
-            //return result.Task.Result;
-
+            return token;
         }
 
         /// <summary>

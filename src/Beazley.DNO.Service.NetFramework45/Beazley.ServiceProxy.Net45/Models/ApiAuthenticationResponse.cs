@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Beazley.ServiceProxy.Net45.Models
 {
-    internal class Credentials
+    internal class ApiAuthenticationResponse
     {
         [JsonProperty(PropertyName = "access_token")]
         public string AccessToken { get; set; }
